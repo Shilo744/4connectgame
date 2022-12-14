@@ -16,10 +16,17 @@ class App extends React.Component {
     boardSize = 7;
     board = [];
     victory(){
-     return checkIfWin(this.board,this.colorTurn())
+      if(checkIfWin(this.board,this.colorTurn())){
+          this.setState({gameOver:true})
+          alert(this.colorTurn()+" have won! if you want to reset click on the board")
+          this.state.redTurn=!this.state.redTurn
+      }
     }
     chooseColor(i){
-        if(this.colorTurn()===this.state.green){
+        if(this.state.gameOver){
+            this.indicators[i]=this.state.white
+        }
+        else if(this.colorTurn()===this.state.green){
             this.indicators[i]=this.state.green
         }else {
             this.indicators[i]=this.state.red
@@ -74,6 +81,13 @@ class App extends React.Component {
     }
 
     rowClicked(i) {
+        if(this.state.gameOver){
+            alert(this.colorTurn()+" have won! press ok to reset")
+            this.state.gameOver=false;
+            this.state.start=true;
+            this.board=[];
+            return null;
+        }
         this.setState({start: false})
         let j=0;
         let color=this.colorTurn()
@@ -82,6 +96,7 @@ class App extends React.Component {
         this.board[i][j] = color
             this.board[i][j-1] = this.state.white
         j++}
+            this.victory()
             this.state.redTurn=!this.state.redTurn}
         this.indicators[i]=this.colorTurn()
         return this.setBoard(this.board)
