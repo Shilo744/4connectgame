@@ -13,8 +13,21 @@
 .limegreen{
   background-color:limegreen;
 }
+.darkred{
+  background-color:darkred;
+}
+.darkgreen{
+  background-color:darkgreen;
+}
 .indicator{
   border: 10px solid white;
+
+}
+.winner {
+  color: gold;
+  border: 8px solid gold;
+  font-size: 200%;
+  height:100px;
 }
 .column{
   border: 8px solid darkblue;
@@ -38,4 +51,15 @@
   font-size: 50px;
   max-width: 265px;
   max-height: 50%;
+}
+.menuButton{
+  border:7px solid gold;
+  margin:40px auto auto auto;
+  color: white;
+  font-size: 280% ;
+  border-radius: 5%;
+  padding-top: 90px;
+  width: 405px;
+  height:250px;
+  display:grid;
 }
