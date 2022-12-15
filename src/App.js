@@ -104,11 +104,13 @@ class App extends React.Component {
             </button>})
     }
     playerVsPlayer(){
+        this.playerButtonOut()
         this.setState({
             onMenu:false,
             playerVsMonkey:false})
     }
     playerVsMonkey(){
+        this.monkeyButtonOut()
         this.setState({
             onMenu:false,
             playerVsMonkey:true})
