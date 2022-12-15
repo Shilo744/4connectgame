@@ -8,10 +8,10 @@
   background-color:white;
 }
 .red{
-  background-color:red;
+  background-color:#CB2A27;
 }
-.limegreen{
-  background-color:limegreen;
+.green{
+  background-color:#4BB95C;
 }
 .darkred{
   background-color:darkred;
@@ -20,7 +20,7 @@
   background-color:darkgreen;
 }
 .indicator{
-  border: 10px solid white;
+  border: 10px solid black;
 
 }
 .winner {
@@ -30,8 +30,8 @@
   height:100px;
 }
 .column{
-  border: 8px solid darkblue;
-  background-color: darkblue;
+  border: 8px solid navy;
+  background-color: navy;
   max-width: 100%;
   max-height: 100%;
   display:grid;
@@ -45,15 +45,27 @@
   grid-template-columns: auto auto auto auto auto auto auto;
 }
 .headline{
-  margin:auto auto auto auto;
+  margin:auto auto auto 538px;
   font-style: italic;
-  color: gray;
+  color: #E9CA33;
   font-size: 50px;
   max-width: 265px;
   max-height: 50%;
 }
+.menu{
+  border:2px solid #F0D060;
+  border-radius: 5%;
+  color: white;
+  margin:auto auto auto 25px;
+  background-color: #1A2463;
+  width: 60px;
+  height:40px;
+}
+.navy{
+  background-color: navy;
+}
 .menuButton{
-  border:7px solid gold;
+  border:6px solid #F0D060;
   margin:40px auto auto auto;
   color: white;
   font-size: 280% ;
@@ -62,4 +74,7 @@
   width: 405px;
   height:250px;
   display:grid;
+}
+body {
+  background-color: black;
 }

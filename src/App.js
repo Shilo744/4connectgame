@@ -9,10 +9,26 @@ class App extends React.Component {
         gameOver:false,
         playerVsMonkey:false,
         onMenu:true,
-        green:"limegreen",
+        green:"green",
         red:"red",
         white:"white",
+        menu:<th><button onClick={(()=>{this.clickMenu()})}
+                         onMouseOver={(()=>{this.overMenu()})}
+                         onMouseOut={(()=>{this.outMenu()})}
+                         className={"menu"}>Menu</button></th>,
+        playersButton:<button onClick={(() => {
+            this.playerVsPlayer()
+        })} className={"darkgreen menuButton"}
+            onMouseOver={(() => {this.playersButtonOver()})}>player VS player
+        </button>,
+        monkeyButton:<button onClick={(() => {
+                this.playerVsMonkey()
+            })} className={"darkred menuButton"}
+                                           onMouseOver={(() => {this.monkeyButtonOver()})}
+                                           onMouseOut={(() => {this.monkeyButtonOut()})}>player VS monkey
+            </button>
     }
+
     indicators= []
     columnsSize = 6;
     boardSize = 7;
@@ -21,29 +37,71 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="App">
-                <h1 className="headline">4 in a row</h1>
+            <div>
+               <tr>{this.state.menu}
+                   <th><h1 className="headline">4 in a row</h1></th></tr>
                 <div>{this.setGame()}</div>
             </div>
         );
     }
+    overMenu(){
+        this.setState({menu:<th><button onClick={(()=>{this.clickMenu()})}
+                                        onMouseOver={(()=>{this.overMenu()})}
+                                        onMouseOut={(()=>{this.outMenu()})} className={"menu navy"}>Menu</button></th>})
+    }
+    outMenu(){
+        this.setState({menu:<th><button onClick={(()=>{this.clickMenu()})}
+                                        onMouseOver={(()=>{this.overMenu()})}
+                                        onMouseOut={(()=>{this.outMenu()})} className={"menu"}>Menu</button></th>})
+    }
+
+    clickMenu(){
+    this.setState({onMenu:true})
+    this.reset();
+    }
     setGame(){
         if(this.state.onMenu){
             return <div>
-                <button onClick={(() => {
-                    this.playerVsPlayer()
-                })} className={"darkgreen menuButton"}>player VS player
-                </button>
-                <button onClick={(() => {
-                    this.playerVsMonkey()
-                })} className={"darkred menuButton"}>player VS monkey
-                </button>
+                {this.state.playersButton}
+                {this.state.monkeyButton}
             </div>
         }
         if(this.state.start){
             this.setBoard()
         }
         return this.showBoard();
+    }
+    playersButtonOver(){
+        this.setState({playersButton:<button onClick={(() => {
+                this.playerVsPlayer()
+            })} className={"green menuButton"}
+             onMouseOver={(() => {this.playersButtonOver()})}
+                                             onMouseOut={(() => {this.playerButtonOut()})}>player VS player
+            </button>})
+    }
+    playerButtonOut(){
+        this.setState({playersButton:<button onClick={(() => {
+                this.playerVsPlayer()
+            })} className={"darkgreen menuButton"}
+               onMouseOver={(() => {this.playersButtonOver(this.state.green,this)})}
+                                             onMouseOut={(() => {this.playerButtonOut()})}>player VS player
+            </button>})
+    }
+    monkeyButtonOver(){
+        this.setState({monkeyButton:<button onClick={(() => {
+                this.playerVsMonkey()
+            })} className={"red menuButton"}
+                                             onMouseOver={(() => {this.monkeyButtonOver()})}
+                                             onMouseOut={(() => {this.monkeyButtonOut()})}>player VS monkey
+            </button>})
+    }
+    monkeyButtonOut(){
+        this.setState({monkeyButton:<button onClick={(() => {
+                this.playerVsMonkey()
+            })} className={"darkred menuButton"}
+                                            onMouseOver={(() => {this.monkeyButtonOver()})}
+                                            onMouseOut={(() => {this.monkeyButtonOut()})}>player VS monkey
+            </button>})
     }
     playerVsPlayer(){
         this.setState({
@@ -105,18 +163,18 @@ class App extends React.Component {
             let j=0;
             let color=this.colorTurn()
             if(this.board[i][j] === this.state.white){
-                while(this.board[i][j] === this.state.white && j!==6){
+                while(this.board[i][j] === this.state.white && j!==this.columnsSize){
                     this.board[i][j] = color
                     this.board[i][j-1] = this.state.white
                     j++
                 }
-                this.setState({})
                 this.victory()
                 this.state.redTurn=!this.state.redTurn
             }
             if(!this.state.playerVsMonkey){
                 this.indicators[i]=this.colorTurn()
             }
+            this.setState({})
         }
     }
     chooseColor(i){
@@ -132,6 +190,7 @@ class App extends React.Component {
     }
     indicatorDisappear(i){
         this.indicators[i]=""
+        this.setState({})
     }
     colorTurn(){
         let color;
@@ -145,8 +204,7 @@ class App extends React.Component {
     victory(){
         if(checkIfWin(this.board,this.colorTurn())){
             this.setState({
-                gameOver: true,
-                redTurn: !this.state.redTurn
+                gameOver: true
             })
             this.wonColor = this.colorTurn();
         }
@@ -156,7 +214,6 @@ class App extends React.Component {
             gameOver: false,
             start: true,
             redTurn: true,
-            onMenu: true
         })
         this.indicators=[]
         this.board=[];
