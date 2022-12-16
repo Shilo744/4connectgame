@@ -2,7 +2,6 @@ import './App.css';
 import React from "react";
 import checkIfWin from "./CheckIfWin";
 import columnClick from "./assents/columnClick.mp3"
-import backgroundMusic from "./assents/backgroundMusic.mp3"
 import menuClick from "./assents/menuClick.wav"
 import optionsButtons from "./assents/optionsButtons.wav"
 import mouseOver from "./assents/mouseOver.mp3"
@@ -18,7 +17,6 @@ class App extends React.Component {
         green:"green",
         red:"red",
         white:"white",
-        music:new Audio(backgroundMusic).play(),
         menu:<th><button onClick={(()=>{this.clickMenu()})}
                          onMouseOver={(()=>{this.overMenu()})}
                          onMouseOut={(()=>{this.outMenu()})}
@@ -45,16 +43,13 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <div>{this.music}</div>
                <tr>{this.state.menu}
                    <th><h1 className="headline">4 in a row</h1></th></tr>
                 <div>{this.setGame()}</div>
             </div>
         );
     }
-    music(){
-        return this.state.music;
-    }
+
     overMenu(){
         new Audio(mouseOver).play()
         this.setState({menu:<th><button onClick={(()=>{this.clickMenu()})}
