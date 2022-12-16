@@ -1,6 +1,12 @@
 import './App.css';
 import React from "react";
 import checkIfWin from "./CheckIfWin";
+import columnClick from "./assents/columnClick.mp3"
+import backgroundMusic from "./assents/backgroundMusic.mp3"
+import menuClick from "./assents/menuClick.wav"
+import optionsButtons from "./assents/optionsButtons.wav"
+import mouseOver from "./assents/mouseOver.mp3"
+import victory from "./assents/victory.wav"
 
 class App extends React.Component {
     state = {
@@ -12,6 +18,7 @@ class App extends React.Component {
         green:"green",
         red:"red",
         white:"white",
+        music:new Audio(backgroundMusic).play(),
         menu:<th><button onClick={(()=>{this.clickMenu()})}
                          onMouseOver={(()=>{this.overMenu()})}
                          onMouseOut={(()=>{this.outMenu()})}
@@ -38,13 +45,18 @@ class App extends React.Component {
     render() {
         return (
             <div>
+                <div>{this.music}</div>
                <tr>{this.state.menu}
                    <th><h1 className="headline">4 in a row</h1></th></tr>
                 <div>{this.setGame()}</div>
             </div>
         );
     }
+    music(){
+        return this.state.music;
+    }
     overMenu(){
+        new Audio(mouseOver).play()
         this.setState({menu:<th><button onClick={(()=>{this.clickMenu()})}
                                         onMouseOver={(()=>{this.overMenu()})}
                                         onMouseOut={(()=>{this.outMenu()})} className={"menu navy"}>Menu</button></th>})
@@ -56,6 +68,7 @@ class App extends React.Component {
     }
 
     clickMenu(){
+        new Audio(menuClick).play()
     this.setState({onMenu:true})
     this.reset();
     }
@@ -72,6 +85,7 @@ class App extends React.Component {
         return this.showBoard();
     }
     playersButtonOver(){
+        new Audio(mouseOver).play()
         this.setState({playersButton:<button onClick={(() => {
                 this.playerVsPlayer()
             })} className={"green menuButton"}
@@ -88,6 +102,7 @@ class App extends React.Component {
             </button>})
     }
     monkeyButtonOver(){
+        new Audio(mouseOver).play()
         this.setState({monkeyButton:<button onClick={(() => {
                 this.playerVsMonkey()
             })} className={"red menuButton"}
@@ -104,12 +119,14 @@ class App extends React.Component {
             </button>})
     }
     playerVsPlayer(){
+        new Audio(optionsButtons).play()
         this.playerButtonOut()
         this.setState({
             onMenu:false,
             playerVsMonkey:false})
     }
     playerVsMonkey(){
+        new Audio(optionsButtons).play()
         this.monkeyButtonOut()
         this.setState({
             onMenu:false,
@@ -139,14 +156,14 @@ class App extends React.Component {
                 newColumn.push(temporary);
             }
 
-            board2.push(<div onClick={(() => {this.rowClicked(i)})}
+            board2.push(<div onClick={(() => {this.columnClicked(i)})}
                              onMouseOver={(() => {this.chooseColor(i)})}
                              onMouseLeave={(() => {this.indicatorDisappear(i)})}
                              className={"column"}>{newColumn}</div>)
         }
         if(this.state.playerVsMonkey && !this.state.redTurn && !this.state.gameOver){
             let random = Math.floor(Math.random() * this.boardSize)
-            this.rowClicked(random)
+            this.columnClicked(random)
         }
         return <div><div className={"board"}>{this.displayIndicators(indicators)}{board2}</div></div>}
 
@@ -158,13 +175,14 @@ class App extends React.Component {
         }
         return indicators;
     }
-    rowClicked(i) {
+    columnClicked(i) {
         if(this.state.gameOver){
             this.reset()
         }else {
             let j=0;
             let color=this.colorTurn()
             if(this.board[i][j] === this.state.white){
+                new Audio(columnClick).play()
                 while(this.board[i][j] === this.state.white && j!==this.columnsSize){
                     this.board[i][j] = color
                     this.board[i][j-1] = this.state.white
@@ -205,6 +223,7 @@ class App extends React.Component {
     }
     victory(){
         if(checkIfWin(this.board,this.colorTurn())){
+            new Audio(victory).play()
             this.setState({
                 gameOver: true
             })

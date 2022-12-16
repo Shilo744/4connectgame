@@ -32,7 +32,7 @@
 .column{
   border: 8px solid navy;
   background-color: navy;
-  max-width: 100%;
+  max-width: 90%;
   max-height: 100%;
   display:grid;
   grid-gap: 12px;
@@ -45,7 +45,7 @@
   grid-template-columns: auto auto auto auto auto auto auto;
 }
 .headline{
-  margin:auto auto auto 538px;
+  margin:auto auto auto 534px;
   font-style: italic;
   color: #E9CA33;
   font-size: 50px;
