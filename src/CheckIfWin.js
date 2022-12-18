@@ -21,9 +21,9 @@ function columnWin(board, color) {
         for (let j = 0; j < board[i].length; j++) {
             if (
                 color === column[j] &&
-                column[j] === column[j + 1] &&
-                column[j + 1] === column[j + 2] &&
-                column[j + 2] === column[j + 3]) {
+                color === column[j + 1] &&
+                color === column[j + 2] &&
+                color === column[j + 3]) {
                 return true;
             }
         }
@@ -40,9 +40,9 @@ function rowWin(board, color) {
         for (let j = 0; j < board.length; j++) {
             if (
                 color === column0[j] &&
-                column0[j] === column1[j] &&
-                column1[j] === column2[j] &&
-                column2[j] === column3[j]
+                color === column1[j] &&
+                color === column2[j] &&
+                color === column3[j]
             ) {
                 return true;
             }
@@ -60,9 +60,9 @@ function rightSlantWin(board, color) {
         for (let j = 0; j < board.length; j++) {
             if (
                 color === column0[j] &&
-                column0[j] === column1[j - 1] &&
-                column1[j - 1] === column2[j - 2] &&
-                column2[j - 2] === column3[j - 3]
+                color === column1[j - 1] &&
+                color === column2[j - 2] &&
+                color === column3[j - 3]
             ) {
                 return true;
             }
@@ -80,9 +80,9 @@ function leftSlantWin(board, color) {
         for (let j = 0; j < board.length; j++) {
             if (
                 color === column0[j] &&
-                column0[j] === column1[j + 1] &&
-                column1[j + 1] === column2[j + 2] &&
-                column2[j + 2] === column3[j + 3]
+                color === column1[j + 1] &&
+                color === column2[j + 2] &&
+                color === column3[j + 3]
             ) {
                 return true;
             }

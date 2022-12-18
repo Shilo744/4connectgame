@@ -1,80 +1,110 @@
-.box{
-  border-radius: 100%;
-  width: 80px;
-  height:80px;
-  border: 2px solid black;
+.box {
+    border-radius: 100%;
+    width: 80px;
+    height: 80px;
+    border: 2px solid black;
 }
-.white{
-  background-color:white;
+
+.white {
+    background-color: white;
 }
-.red{
-  background-color:#CB2A27;
+
+.red {
+    background-color: #CB2A27;
 }
-.green{
-  background-color:#4BB95C;
+
+.green {
+    background-color: #4BB95C;
 }
-.darkred{
-  background-color:darkred;
+
+.darkred {
+    background-color: darkred;
 }
-.darkgreen{
-  background-color:darkgreen;
+
+.darkgreen {
+    background-color: darkgreen;
 }
-.indicator{
-  border: 10px solid black;
+
+.black {
+    background-color: black;
+}
+
+.indicator {
+    border: 10px solid black;
 
 }
+
+.darkNavy {
+    background-color: #1A1223;
+}
+
 .winner {
-  color: gold;
-  border: 8px solid gold;
-  font-size: 200%;
-  height:100px;
+    color: gold;
+    border: 8px solid gold;
+    font-size: 200%;
+    height: 100px;
 }
-.column{
-  border: 8px solid navy;
-  background-color: navy;
-  max-width: 90%;
-  max-height: 100%;
-  display:grid;
-  grid-gap: 12px;
+
+.column {
+    border: 8px solid navy;
+    background-color: navy;
+    max-width: 90%;
+    max-height: 100%;
+    display: grid;
+    grid-gap: 11px;
 }
-.board{
-  max-width: 50%;
-  max-height: 50%;
-  margin:auto auto auto 360px;
-  display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto;
+
+.board {
+    max-width: 50%;
+    max-height: 48%;
+    margin: auto auto auto auto;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
 }
-.headline{
-  margin:auto auto auto 534px;
-  font-style: italic;
-  color: #E9CA33;
-  font-size: 50px;
-  max-width: 265px;
-  max-height: 50%;
+
+.headline {
+    margin: auto auto auto 550px;
+    font-style: italic;
+    color: #E9CA33;
+    font-size: 50px;
+    max-width: 265px;
+    max-height: 50%;
 }
-.menu{
-  border:2px solid #F0D060;
-  border-radius: 5%;
-  color: white;
-  margin:auto auto auto 25px;
-  background-color: #1A2463;
-  width: 60px;
-  height:40px;
+
+.menu {
+    border: 2px solid #F0D060;
+    border-radius: 5%;
+    color: rgb(200, 200, 200, 200);
+    margin: auto auto auto 25px;
+    background-color: #1A2463;
+    width: 60px;
+    height: 40px;
 }
-.navy{
-  background-color: navy;
+
+.navy {
+    background-color: navy;
 }
-.menuButton{
-  border:6px solid #F0D060;
-  margin:40px auto auto auto;
-  color: white;
-  font-size: 280% ;
-  border-radius: 5%;
-  padding-top: 90px;
-  width: 405px;
-  height:250px;
-  display:grid;
+
+.menuButton {
+    border: 6px solid #F0D060;
+    margin: 20px auto auto auto;
+    color: rgb(180, 180, 180, 180);
+    font-size: 260%;
+    border-radius: 5%;
+    padding-top: 70px;
+    width: 365px;
+    height: 195px;
+    display: grid;
 }
+
+.textColor {
+    color: white;
+}
+
+.goldText {
+    color: #F0D060;
+}
+
 body {
-  background-color: black;
+    background-color: black;
 }
