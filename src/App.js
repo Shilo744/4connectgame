@@ -1,12 +1,12 @@
 import './App.css';
 import React from "react";
 import checkIfWin from "./CheckIfWin";
-import columnClick from "./assents/columnClick.mp3"
-import backgroundMusic from "./assents/backgroundMusic.mp3"
-import menuClick from "./assents/menuClick.wav"
-import optionsButtons from "./assents/optionsButtons.wav"
-import mouseOver from "./assents/mouseOver.mp3"
-import victory from "./assents/victory.mp3"
+import columnClick from "./assets/columnClick.mp3"
+import backgroundMusic from "./assets/backgroundMusic.mp3"
+import menuClick from "./assets/menuClick.wav"
+import optionsButtons from "./assets/optionsButtons.wav"
+import mouseOver from "./assets/mouseOver.mp3"
+import victory from "./assets/victory.mp3"
 import AlgorithmStrategy from "./AlgorithmStrategy";
 
 class App extends React.Component {
