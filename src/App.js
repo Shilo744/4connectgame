@@ -186,7 +186,7 @@ class App extends React.Component {
         this.setState({
             aiButton: <button onClick={(() => {
                 this.playerVsAI()
-            })} className={"darkNavy menuButton goldText"}
+            })} className={"ai menuButton goldText"}
                               onMouseOver={(() => {
                                   this.aiButtonOver()
                               })}
@@ -252,6 +252,9 @@ class App extends React.Component {
             indicators.push(<div className={"indicator " + this.indicators[i] + " box"}></div>)
             for (let j = 0; j < this.columnsSize; j++) {
                 let temporary = <div className={column[j] + " box"}></div>
+                if(this.state.playerVsAI && column[j]==="green"){
+                    temporary = <div className={"ai box"}></div>
+                }
                 newColumn.push(temporary);
             }
 
@@ -268,7 +271,7 @@ class App extends React.Component {
         }
         this.gameMoves()
         return <div>
-            <div className={"board"}>{this.displayIndicators(indicators)}{board2}</div>
+            <div className={"board"}>{this.displayIndicatorsVictory(indicators)}{board2}</div>
         </div>
     }
 
@@ -281,10 +284,13 @@ class App extends React.Component {
             this.board.push(column)
         }
     }
-    displayIndicators(indicators) {
+    displayIndicatorsVictory(indicators) {
         if (this.state.gameOver && !this.state.draw) {
             for (let i = 0; i < indicators.length; i++) {
-                indicators[i] = <button className={"indicator " + this.wonColor + "  winner"}>WON</button>
+                if(this.state.playerVsAI && this.wonColor==="green"){
+                    indicators[i] = <button className={"indicator ai  winner"}>WON</button>
+                }else {
+                indicators[i] = <button className={"indicator " + this.wonColor + "  winner"}>WON</button>}
             }
         } else if (this.state.draw) {
             for (let i = 0; i < indicators.length; i++) {

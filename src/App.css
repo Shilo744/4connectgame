@@ -1,8 +1,8 @@
 .box {
     border-radius: 100%;
-    width: 80px;
-    height: 80px;
-    border: 2px solid black;
+    width: 76px;
+    height: 76px;
+    border: 4px inset gold;
 }
 
 .white {
@@ -10,11 +10,13 @@
 }
 
 .red {
-    background-color: #CB2A27;
+    background: radial-gradient(circle at center,
+    rgb(255,180,180), #CB2A27, darkred,rgb(50,0,0)),100% ;
 }
 
 .green {
-    background-color: #4BB95C;
+    background: radial-gradient(circle at center,
+    rgb(100,255,255), rgb(0,240,130), #4BB95C,rgb(0,80,0)),100% ;
 }
 
 .darkred {
@@ -31,18 +33,18 @@
 
 .indicator {
     border: 10px solid black;
-
 }
 
-.darkNavy {
-    background-color: #1A1223;
+.ai {
+    background: radial-gradient(circle at center,
+    rgb(80,230,255),midnightblue,black),100% ;
 }
 
 .winner {
     color: gold;
-    border: 8px solid gold;
+    border: 7px inset gold;
     font-size: 200%;
-    height: 100px;
+    height: 96px;
 }
 
 .column {
@@ -72,13 +74,13 @@
 }
 
 .menu {
-    border: 2px solid #F0D060;
+    border: 3px outset #F0D060;
     border-radius: 5%;
     color: rgb(200, 200, 200, 200);
     margin: auto auto auto 25px;
     background-color: #1A2463;
-    width: 60px;
-    height: 40px;
+    width: 62px;
+    height: 42px;
 }
 
 .navy {
@@ -86,7 +88,7 @@
 }
 
 .menuButton {
-    border: 6px solid #F0D060;
+    border: 6px inset #F0D060;
     margin: 20px auto auto auto;
     color: rgb(180, 180, 180, 180);
     font-size: 260%;
