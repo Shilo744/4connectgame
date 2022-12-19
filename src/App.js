@@ -28,7 +28,6 @@ class App extends React.Component {
         monkeyButton: this.monkeyButtonOut(),
         aiButton: this.aiButtonOut()
     }
-    musicOn = false
     indicators = []
     columnsSize = 6
     boardSize = 7
@@ -384,7 +383,6 @@ class App extends React.Component {
     }
     music() {
 
-        this.musicOn = true
         let music1 = new Audio(backgroundMusic)
         music1.loop = true
         music1.volume = 0.4

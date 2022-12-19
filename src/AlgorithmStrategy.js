@@ -14,33 +14,29 @@ function AlgorithmStrategy(board) {
     const checkLoseOption=1;
 
     let win;
-
+    stuff.doNotEnter=[]
     strategyWithThree(board, stuff.red,checkLoseOption)
 
     // trying to win
     win = strategyWithThree(board, stuff.green,regularMove)
     if (win !== stuff.noPossibleWin) {
-        stuff.doNotEnter=[]
         return win}
 
     // try to block opponent
     win = strategyWithThree(board, stuff.red,regularMove)
     if (win !== stuff.noPossibleWin) {
-        stuff.doNotEnter=[]
         return win}
 
     // try to block opponent
     win = strategyWithTwo(board, stuff.red)
     if (win !== stuff.noPossibleWin) {
         if(!willLose(win)) {
-            stuff.doNotEnter=[]
             return win}}
 
     // trying to win
     win = strategyWithTwo(board, stuff.green)
     if (win !== stuff.noPossibleWin) {
         if(!willLose(win)) {
-            stuff.doNotEnter=[]
             return win}}
 
     let validOptions=[]
@@ -66,7 +62,6 @@ function AlgorithmStrategy(board) {
     if(finalOptions.length>0){
         const option=validOptions[Math.floor(Math.random() * validOptions.length)]
         // alert(option)
-        stuff.doNotEnter=[]
         return option
     }
     return stuff.noPossibleWin
