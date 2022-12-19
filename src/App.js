@@ -18,6 +18,7 @@ class App extends React.Component {
         playerVsMonkey: false,
         playerVsAI: false,
         onMenu: true,
+        auto:false,
         green: "green",
         red: "red",
         white: "white",
@@ -104,8 +105,10 @@ class App extends React.Component {
         return this.showBoard();
     }
     gameMoves(){
-        if (this.state.playerVsMonkey && !this.state.redTurn && !this.state.gameOver) {
+        if(!this.state.redTurn || this.state.auto){
+        if (this.state.playerVsMonkey && !this.state.gameOver) {
             let random = Math.floor(Math.random() * this.boardSize)
+            debugger
             if (this.state.playerVsAI) {
                 const algorithm = AlgorithmStrategy(this.board)
                 if (algorithm !== -1) {
@@ -116,7 +119,7 @@ class App extends React.Component {
             } else {
                 this.columnClicked(random)
             }
-        }
+        }}
     }
 
     playersButtonOver() {

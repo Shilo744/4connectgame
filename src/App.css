@@ -11,12 +11,12 @@
 
 .red {
     background: radial-gradient(circle at center,
-    rgb(255,180,180), #CB2A27, darkred,rgb(50,0,0)),100% ;
+    rgb(255,190,190), rgb(180,30,20), rgb(100,30,40),rgb(50,0,0)),100% ;
 }
 
 .green {
     background: radial-gradient(circle at center,
-    rgb(100,255,255), rgb(0,240,130), #4BB95C,rgb(0,80,0)),100% ;
+    rgb(160,255,255), rgb(0,180,70), rgb(0,100,30),rgb(0,50,0)),100% ;
 }
 
 .darkred {
@@ -37,7 +37,7 @@
 
 .ai {
     background: radial-gradient(circle at center,
-    rgb(80,230,255),midnightblue,black),100% ;
+    rgb(80,230,255),rgb(50,120,170),midnightblue,rgb(10,10,15),rgb(4,4,8)),100% ;
 }
 
 .winner {
