@@ -6,7 +6,9 @@ const stuff = {
     red: "red",
     boardSize: 7,
     columnSize: 6,
-    doNotEnter:[]
+    doNotEnter:[],
+    ruinForYourself:[]
+
 }
 
 function AlgorithmStrategy(board) {
@@ -15,9 +17,16 @@ function AlgorithmStrategy(board) {
 
     let win;
     stuff.doNotEnter=[]
-    strategyWithThree(board, stuff.red,checkLoseOption)
+    stuff.ruinForYourself=[]
+    strategyWithThree(board, stuff.green,checkLoseOption)
+    stuff.ruinForYourself=stuff.doNotEnter
 
+    stuff.doNotEnter=[]
+    strategyWithThree(board, stuff.red,checkLoseOption)
     // trying to win
+
+    // alert("dont enter "+stuff.doNotEnter+" dont ruin "+stuff.ruinForYourself)
+
     win = strategyWithThree(board, stuff.green,regularMove)
     if (win !== stuff.noPossibleWin) {
         return win}
@@ -43,10 +52,11 @@ function AlgorithmStrategy(board) {
     for (let i = 0; i <stuff.boardSize; i++) {
         validOptions.push(i)
     }
-    let same=true
+    let same=false
     let finalOptions=[]
 
     for (let i = 0; i <validOptions.length; i++) {
+        same=false
     for (let j = 0; j <stuff.doNotEnter.length; j++) {
             if(validOptions[i]===stuff.doNotEnter[j]){
                 same=true
@@ -57,10 +67,27 @@ function AlgorithmStrategy(board) {
             }
         }
     }
-
+    let bestSolution=[]
+    for (let i = 0; i <validOptions.length; i++) {
+        same=false
+        for (let j = 0; j <stuff.ruinForYourself.length; j++) {
+            if(validOptions[i]===stuff.ruinForYourself[j]){
+                same=true
+                break
+            }
+            if(!same){
+                bestSolution.push()
+            }
+        }
+    }
+    // alert(stuff.doNotEnter+" you="+stuff.ruinForYourself)
+    if(bestSolution.length>0){
+        const option=bestSolution[Math.floor(Math.random() * bestSolution.length)]
+        return option
+    }
     // alert(validOptions)
     if(finalOptions.length>0){
-        const option=validOptions[Math.floor(Math.random() * validOptions.length)]
+        const option=finalOptions[Math.floor(Math.random() * finalOptions.length)]
         // alert(option)
         return option
     }
