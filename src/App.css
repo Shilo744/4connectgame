@@ -89,7 +89,7 @@
 }
 
 .menuButton {
-    border: 4px inset #F0D060;
+    border: 3px inset #F0D060;
     margin: 20px auto auto auto;
     color: rgb(180, 180, 180, 180);
     font-size: 260%;
@@ -110,5 +110,5 @@
 
 body {
     background: radial-gradient(circle at center,
-    rgb(0,0,0),rgb(0,0,8),rgb(0,0,15),rgb(10,10,60)),100% ;
+    rgb(0,0,0),rgb(0,0,8),rgb(0,0,15),rgb(5,5,30),rgb(0,50,80)),100% ;
 }

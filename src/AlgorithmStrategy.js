@@ -11,11 +11,14 @@ const stuff = {
 
 }
 
-function AlgorithmStrategy(board) {
+function AlgorithmStrategy(board,level) {
     const regularMove=0;
     const checkLoseOption=1;
-
     let win;
+    if(level===0){
+        win = strategyWithThree(board, stuff.red,regularMove)
+            return win
+    }
     stuff.doNotEnter=[]
     stuff.ruinForYourself=[]
     strategyWithThree(board, stuff.green,checkLoseOption)
@@ -24,10 +27,6 @@ function AlgorithmStrategy(board) {
     stuff.doNotEnter=[]
     strategyWithThree(board, stuff.red,checkLoseOption)
     // trying to win
-
-    win = strategyWithThree(board, stuff.green,regularMove)
-    if (win !== stuff.noPossibleWin) {
-        return win}
 
     // try to block opponent
     win = strategyWithThree(board, stuff.red,regularMove)
@@ -45,6 +44,7 @@ function AlgorithmStrategy(board) {
     if (win !== stuff.noPossibleWin) {
         if(!willLose(win) && !ruinYourself(win)) {
             return win}}
+
 
     //putting in place where the result will not be losing potential win or losing in the opponent turn
     let bestOptionsPut=bestOption(board)

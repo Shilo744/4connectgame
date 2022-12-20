@@ -2,21 +2,24 @@ import './App.css';
 import React from "react";
 import checkIfWin from "./CheckIfWin";
 import columnClick from "./assets/columnClick.mp3"
-import backgroundMusic from "./assets/backgroundMusic.mp3"
+import backgroundMusic from "./assets/backgroundMusic1.mp3"
 
 import menuClick from "./assets/menuClick.wav"
 import optionsButtons from "./assets/optionsButtons.wav"
 import mouseOver from "./assets/mouseOver.mp3"
 import victory from "./assets/victory.mp3"
+import replay from "./assets/replay.wav"
 import AlgorithmStrategy from "./AlgorithmStrategy";
-import indicatorMove from "./assets/indicatorMove.wav"
+
 class App extends React.Component {
     state = {
         start: true,
         redTurn: true,
         gameOver: false,
         draw: false,
+        //monkey know only how to block
         playerVsMonkey: false,
+        //not a real AI. only a complex algorithm to decide the best option
         playerVsAI: false,
         onMenu: true,
 
@@ -109,18 +112,23 @@ class App extends React.Component {
     }
     gameMoves(){
         if((!this.state.redTurn || this.state.auto)){
+            const noOption=-1
         if (this.state.playerVsMonkey && !this.state.gameOver) {
             let random = Math.floor(Math.random() * this.boardSize)
-
             if (this.state.playerVsAI) {
                 const algorithm = AlgorithmStrategy(this.board)
-                if (algorithm !== -1) {
+                if (algorithm !== noOption) {
                     this.columnClicked(algorithm)
                 } else {
                     this.columnClicked(random)
                 }
             } else {
-                this.columnClicked(random)
+                const low=0
+                const algorithm = AlgorithmStrategy(this.board,low)
+                if(algorithm!==noOption){
+                    this.columnClicked(algorithm)
+                }else {
+                this.columnClicked(random)}
             }
         }}
     }
@@ -224,7 +232,7 @@ class App extends React.Component {
         this.setState({
             onMenu: false,
             playerVsMonkey: true,
-            playerVsAI: true
+            playerVsAI: true,
         })
     }
     playerVsPlayer() {
@@ -255,7 +263,7 @@ class App extends React.Component {
             if (this.indicators.length < this.boardSize) {
                 this.indicators.push("")
             }
-            indicators.push(<div className={"indicator " + this.indicators[i] + " box"}></div>)
+            indicators.push(<div className={"indicator " + this.indicators[i] + " box"}/>)
             for (let j = 0; j < this.columnsSize; j++) {
                 let temporary = <div className={column[j] + " box"}></div>
                 if(this.state.playerVsAI && column[j]==="green"){
@@ -309,6 +317,9 @@ class App extends React.Component {
 
     columnClicked(i) {
         if (this.state.gameOver) {
+            let replaySound= new Audio(replay)
+           replaySound.volume=0.6
+            replaySound.play()
             this.reset()
         } else {
             let j = 0;
@@ -331,9 +342,7 @@ class App extends React.Component {
     }
 
     chooseColor(i) {
-        if (this.state.gameOver) {
-            this.indicators[i] = this.state.white
-        } else if (this.colorTurn() === this.state.green) {
+         if (this.colorTurn() === this.state.green) {
             this.indicators[i] = this.state.green
         } else {
             this.indicators[i] = this.state.red
@@ -342,7 +351,6 @@ class App extends React.Component {
     }
     indicatorDisappear(i) {
         if(!this.state.gameOver){
-        new Audio(indicatorMove).play()
         this.indicators[i] = ""
         this.setState({})}
     }
@@ -391,7 +399,7 @@ class App extends React.Component {
     music() {
         let music1 = new Audio(backgroundMusic)
         music1.loop = true
-        music1.volume = 0.2
+        music1.volume = 0.25
         music1.autoplay = true
         return music1
     }
