@@ -19,11 +19,15 @@ class App extends React.Component {
         playerVsMonkey: false,
         playerVsAI: false,
         onMenu: true,
+
         auto:false,
+
         green: "green",
         red: "red",
         white: "white",
+
         music:this.music(),
+
         menu: this.outMenu(),
         playersButton: this.playerButtonOut(),
         monkeyButton: this.monkeyButtonOut(),
@@ -46,7 +50,6 @@ class App extends React.Component {
             </div>
         );
     }
-
 
     overMenu() {
         new Audio(mouseOver).play()
@@ -287,6 +290,7 @@ class App extends React.Component {
             this.board.push(column)
         }
     }
+
     displayIndicatorsVictory(indicators) {
         if (this.state.gameOver && !this.state.draw) {
             for (let i = 0; i < indicators.length; i++) {
@@ -336,7 +340,6 @@ class App extends React.Component {
         }
         this.setState({})
     }
-
     indicatorDisappear(i) {
         if(!this.state.gameOver){
         new Audio(indicatorMove).play()
@@ -386,7 +389,6 @@ class App extends React.Component {
         this.board = [];
     }
     music() {
-
         let music1 = new Audio(backgroundMusic)
         music1.loop = true
         music1.volume = 0.2
