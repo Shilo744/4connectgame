@@ -46,18 +46,19 @@ function AlgorithmStrategy(board) {
         if(!willLose(win) && !ruinYourself(win)) {
             return win}}
 
+    //putting in place where the result will not be losing potential win or losing in the opponent turn
     let bestOptionsPut=bestOption(board)
     if(bestOptionsPut.length>0){
         let random = Math.floor(Math.random() * bestOptionsPut.length)
         return  bestOptionsPut[random]
     }
-
+    //putting in place you will not lose next turn
     let columnsOptions=validColumns(board)
     if(columnsOptions.length>0){
     let random = Math.floor(Math.random() * columnsOptions.length)
     return  columnsOptions[random]
     }
-
+    // didn't find any good option and giving back negative answer -1. (will happen toward the end game when only lose possible)
     return stuff.noPossibleWin
 }
 function bestOption(board){
@@ -160,7 +161,6 @@ function strategyWithThree(board, color,move) {
         return win;}
     return stuff.noPossibleWin
 }
-
 
 function columnWinTwo(board, color) {
 

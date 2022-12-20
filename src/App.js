@@ -22,11 +22,11 @@ class App extends React.Component {
 
         auto:false,
 
+        music:this.music(),
+
         green: "green",
         red: "red",
         white: "white",
-
-        music:this.music(),
 
         menu: this.outMenu(),
         playersButton: this.playerButtonOut(),

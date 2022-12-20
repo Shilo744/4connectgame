@@ -19,6 +19,7 @@ function columnWin(board, color) {
     for (let i = 0; i < board.length; i++) {
         let column = board[i];
         for (let j = 0; j < board[i].length; j++) {
+
             if (
                 color === column[j] &&
                 color === column[j + 1] &&
