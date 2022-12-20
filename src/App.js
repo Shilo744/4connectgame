@@ -3,12 +3,13 @@ import React from "react";
 import checkIfWin from "./CheckIfWin";
 import columnClick from "./assets/columnClick.mp3"
 import backgroundMusic from "./assets/backgroundMusic.mp3"
+
 import menuClick from "./assets/menuClick.wav"
 import optionsButtons from "./assets/optionsButtons.wav"
 import mouseOver from "./assets/mouseOver.mp3"
 import victory from "./assets/victory.mp3"
 import AlgorithmStrategy from "./AlgorithmStrategy";
-
+import indicatorMove from "./assets/indicatorMove.wav"
 class App extends React.Component {
     state = {
         start: true,
@@ -104,10 +105,10 @@ class App extends React.Component {
         return this.showBoard();
     }
     gameMoves(){
-        if(!this.state.redTurn || this.state.auto){
+        if((!this.state.redTurn || this.state.auto)){
         if (this.state.playerVsMonkey && !this.state.gameOver) {
             let random = Math.floor(Math.random() * this.boardSize)
-            debugger
+
             if (this.state.playerVsAI) {
                 const algorithm = AlgorithmStrategy(this.board)
                 if (algorithm !== -1) {
@@ -335,9 +336,12 @@ class App extends React.Component {
         }
         this.setState({})
     }
+
     indicatorDisappear(i) {
+        if(!this.state.gameOver){
+        new Audio(indicatorMove).play()
         this.indicators[i] = ""
-        this.setState({})
+        this.setState({})}
     }
     colorTurn() {
         let color;
@@ -385,7 +389,7 @@ class App extends React.Component {
 
         let music1 = new Audio(backgroundMusic)
         music1.loop = true
-        music1.volume = 0.4
+        music1.volume = 0.2
         music1.autoplay = true
         return music1
     }

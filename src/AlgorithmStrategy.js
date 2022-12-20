@@ -25,8 +25,6 @@ function AlgorithmStrategy(board) {
     strategyWithThree(board, stuff.red,checkLoseOption)
     // trying to win
 
-    // alert("dont enter "+stuff.doNotEnter+" dont ruin "+stuff.ruinForYourself)
-
     win = strategyWithThree(board, stuff.green,regularMove)
     if (win !== stuff.noPossibleWin) {
         return win}
@@ -39,61 +37,55 @@ function AlgorithmStrategy(board) {
     // try to block opponent
     win = strategyWithTwo(board, stuff.red)
     if (win !== stuff.noPossibleWin) {
-        if(!willLose(win)) {
+        if(!willLose(win) && !ruinYourself(win)) {
             return win}}
 
     // trying to win
     win = strategyWithTwo(board, stuff.green)
     if (win !== stuff.noPossibleWin) {
-        if(!willLose(win)) {
+        if(!willLose(win) && !ruinYourself(win)) {
             return win}}
 
-    let validOptions=[]
-    for (let i = 0; i <stuff.boardSize; i++) {
-        validOptions.push(i)
+    let bestOptionsPut=bestOption(board)
+    if(bestOptionsPut.length>0){
+        let random = Math.floor(Math.random() * bestOptionsPut.length)
+        return  bestOptionsPut[random]
     }
-    let same=false
-    let finalOptions=[]
 
-    for (let i = 0; i <validOptions.length; i++) {
-        same=false
-    for (let j = 0; j <stuff.doNotEnter.length; j++) {
-            if(validOptions[i]===stuff.doNotEnter[j]){
-                same=true
-                break
-            }
-            if(!same){
-                finalOptions.push()
-            }
-        }
+    let columnsOptions=validColumns(board)
+    if(columnsOptions.length>0){
+    let random = Math.floor(Math.random() * columnsOptions.length)
+    return  columnsOptions[random]
     }
-    let bestSolution=[]
-    for (let i = 0; i <validOptions.length; i++) {
-        same=false
-        for (let j = 0; j <stuff.ruinForYourself.length; j++) {
-            if(validOptions[i]===stuff.ruinForYourself[j]){
-                same=true
-                break
-            }
-            if(!same){
-                bestSolution.push()
-            }
-        }
-    }
-    // alert(stuff.doNotEnter+" you="+stuff.ruinForYourself)
-    if(bestSolution.length>0){
-        const option=bestSolution[Math.floor(Math.random() * bestSolution.length)]
-        return option
-    }
-    // alert(validOptions)
-    if(finalOptions.length>0){
-        const option=finalOptions[Math.floor(Math.random() * finalOptions.length)]
-        // alert(option)
-        return option
-    }
+
     return stuff.noPossibleWin
 }
-
+function bestOption(board){
+    let options=validColumns(board)
+    let bestOptions=[]
+    for (let i = 0; i < options.length; i++) {
+        let valid=true
+        for (let j = 0; j < stuff.ruinForYourself; j++) {
+            if(options[i]===stuff.ruinForYourself[j]){
+                valid=false
+                break
+            }
+        }
+        if(valid){
+            bestOptions.push(options[i])
+        }
+    }
+    return bestOptions;
+}
+function validColumns(board){
+    let freeColumns=[]
+    for (let i = 0; i < stuff.boardSize; i++) {
+        if(board[i][0]===stuff.empty){
+            if(!willLose(i)){
+            freeColumns.push(i)}
+        }
+    }
+return freeColumns}
 function willLose(i){
     for (let j = 0; j <stuff.doNotEnter.length; j++) {
         if (i===stuff.doNotEnter[j]){
@@ -102,7 +94,14 @@ function willLose(i){
     }
 return false
 }
-
+function ruinYourself(i){
+    for (let j = 0; j <stuff.ruinForYourself.length; j++) {
+        if (i===stuff.ruinForYourself[j]){
+            return true
+        }
+    }
+    return false
+}
 function strategyWithTwo(board, color) {
     let win;
 
