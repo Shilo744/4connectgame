@@ -26,7 +26,11 @@ function AlgorithmStrategy(board,level) {
 
     stuff.doNotEnter=[]
     strategyWithThree(board, stuff.red,checkLoseOption)
+
     // trying to win
+    win = strategyWithThree(board, stuff.green,regularMove)
+    if (win !== stuff.noPossibleWin) {
+        return win}
 
     // try to block opponent
     win = strategyWithThree(board, stuff.red,regularMove)

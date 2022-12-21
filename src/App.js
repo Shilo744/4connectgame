@@ -3,7 +3,6 @@ import React from "react";
 import checkIfWin from "./CheckIfWin";
 import columnClick from "./assets/columnClick.mp3"
 import backgroundMusic from "./assets/backgroundMusic1.mp3"
-
 import menuClick from "./assets/menuClick.wav"
 import optionsButtons from "./assets/optionsButtons.wav"
 import mouseOver from "./assets/mouseOver.mp3"

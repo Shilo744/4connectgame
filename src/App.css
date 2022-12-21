@@ -35,7 +35,6 @@
 .indicator {
     border: 10px solid rgb(0,0,20);
 }
-
 .ai {
     background: radial-gradient(circle at center,
     rgb(80,230,255),rgb(50,120,170),midnightblue,rgb(10,10,15),rgb(4,4,8)),100%;
@@ -49,8 +48,9 @@
 }
 
 .column {
-    border: 8px solid midnightblue;
-    background-color: midnightblue;
+    background: radial-gradient(circle at top,
+     rgb(40,80,160), rgb(30,60,120),rgb(20,40,80),rgb(15,30,60)),100% ;
+    padding: 10px;
     max-width: 90%;
     max-height: 100%;
     display: grid;
