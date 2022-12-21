@@ -24,7 +24,7 @@ class App extends React.Component {
 
         auto:false,
 
-        music:this.music(),
+        music:this.music(0.4),
 
         green: "green",
         red: "red",
@@ -302,7 +302,7 @@ class App extends React.Component {
         if (this.state.gameOver && !this.state.draw) {
             for (let i = 0; i < indicators.length; i++) {
                 if(this.state.playerVsAI && this.wonColor==="green"){
-                    indicators[i] = <button className={"indicator ai  winner"}>WON</button>
+                    indicators[i] = <button className={"indicator ai winner"}>WON</button>
                 }else {
                 indicators[i] = <button className={"indicator " + this.wonColor + "  winner"}>WON</button>}
             }
@@ -317,7 +317,7 @@ class App extends React.Component {
     columnClicked(i) {
         if (this.state.gameOver) {
             let replaySound= new Audio(replay)
-           replaySound.volume=0.6
+           replaySound.volume=0.4
             replaySound.play()
             this.reset()
         } else {
@@ -327,6 +327,7 @@ class App extends React.Component {
                 new Audio(columnClick).play()
                 while (this.board[i][j] === this.state.white && j !== this.columnsSize) {
                     this.board[i][j] = color
+
                     this.board[i][j - 1] = this.state.white
                     j++
                 }
@@ -395,10 +396,10 @@ class App extends React.Component {
         this.indicators = []
         this.board = [];
     }
-    music() {
+    music(volume) {
         let music1 = new Audio(backgroundMusic)
         music1.loop = true
-        music1.volume = 0.25
+        music1.volume = volume
         music1.autoplay = true
         return music1
     }
