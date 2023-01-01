@@ -70,7 +70,7 @@ class App extends React.Component {
         this.setState({
             menu:thisMenu
         })
-    return thisMenu}
+        return thisMenu}
 
     outMenu() {
         const thisOutMenu=<th>
@@ -88,7 +88,7 @@ class App extends React.Component {
         this.setState({
             menu: thisOutMenu
         })
-    return thisOutMenu}
+        return thisOutMenu}
 
     clickMenu() {
         new Audio(menuClick).play()
@@ -98,6 +98,7 @@ class App extends React.Component {
 
     setGame() {
         if (this.state.onMenu) {
+            this.state.music.pause()
             return <div>
                 {this.state.playersButton}
                 {this.state.monkeyButton}
@@ -105,6 +106,7 @@ class App extends React.Component {
             </div>
         }
         if (this.state.start) {
+            this.state.music.play()
             this.setBoard()
         }
         return this.showBoard();
@@ -112,24 +114,24 @@ class App extends React.Component {
     gameMoves(){
         if((!this.state.redTurn || this.state.auto)){
             const noOption=-1
-        if (this.state.playerVsMonkey && !this.state.gameOver) {
-            let random = Math.floor(Math.random() * this.boardSize)
-            if (this.state.playerVsAI) {
-                const algorithm = AlgorithmStrategy(this.board)
-                if (algorithm !== noOption) {
-                    this.columnClicked(algorithm)
+            if (this.state.playerVsMonkey && !this.state.gameOver) {
+                let random = Math.floor(Math.random() * this.boardSize)
+                if (this.state.playerVsAI) {
+                    const algorithm = AlgorithmStrategy(this.board)
+                    if (algorithm !== noOption) {
+                        this.columnClicked(algorithm)
+                    } else {
+                        this.columnClicked(random)
+                    }
                 } else {
-                    this.columnClicked(random)
+                    const low=0
+                    const algorithm = AlgorithmStrategy(this.board,low)
+                    if(algorithm!==noOption){
+                        this.columnClicked(algorithm)
+                    }else {
+                        this.columnClicked(random)}
                 }
-            } else {
-                const low=0
-                const algorithm = AlgorithmStrategy(this.board,low)
-                if(algorithm!==noOption){
-                    this.columnClicked(algorithm)
-                }else {
-                this.columnClicked(random)}
-            }
-        }}
+            }}
     }
 
     playersButtonOver() {
@@ -161,7 +163,7 @@ class App extends React.Component {
         this.setState({
             playersButton: thisPlayerButtonOut
         })
-    return thisPlayerButtonOut}
+        return thisPlayerButtonOut}
 
     monkeyButtonOver() {
         new Audio(mouseOver).play()
@@ -192,7 +194,7 @@ class App extends React.Component {
         this.setState({
             monkeyButton: thisMonkeyButton
         })
-    return thisMonkeyButton}
+        return thisMonkeyButton}
 
     aiButtonOver() {
         new Audio(mouseOver).play()
@@ -223,7 +225,7 @@ class App extends React.Component {
         this.setState({
             aiButton: thisAiButton
         })
-    return thisAiButton}
+        return thisAiButton}
 
     playerVsAI() {
         new Audio(optionsButtons).play()
@@ -304,7 +306,7 @@ class App extends React.Component {
                 if(this.state.playerVsAI && this.wonColor==="green"){
                     indicators[i] = <button className={"indicator ai winner"}>WON</button>
                 }else {
-                indicators[i] = <button className={"indicator " + this.wonColor + "  winner"}>WON</button>}
+                    indicators[i] = <button className={"indicator " + this.wonColor + "  winner"}>WON</button>}
             }
         } else if (this.state.draw) {
             for (let i = 0; i < indicators.length; i++) {
@@ -317,7 +319,7 @@ class App extends React.Component {
     columnClicked(i) {
         if (this.state.gameOver) {
             let replaySound= new Audio(replay)
-           replaySound.volume=0.4
+            replaySound.volume=0.4
             replaySound.play()
             this.reset()
         } else {
@@ -342,7 +344,7 @@ class App extends React.Component {
     }
 
     chooseColor(i) {
-         if (this.colorTurn() === this.state.green) {
+        if (this.colorTurn() === this.state.green) {
             this.indicators[i] = this.state.green
         } else {
             this.indicators[i] = this.state.red
@@ -351,8 +353,8 @@ class App extends React.Component {
     }
     indicatorDisappear(i) {
         if(!this.state.gameOver){
-        this.indicators[i] = ""
-        this.setState({})}
+            this.indicators[i] = ""
+            this.setState({})}
     }
     colorTurn() {
         let color;

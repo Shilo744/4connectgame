@@ -17,7 +17,7 @@ function AlgorithmStrategy(board,level) {
     let win;
     if(level===0){
         win = strategyWithThree(board, stuff.red,regularMove)
-            return win
+        return win
     }
     stuff.doNotEnter=[]
     stuff.ruinForYourself=[]
@@ -59,10 +59,10 @@ function AlgorithmStrategy(board,level) {
     //putting in place you will not lose next turn
     let columnsOptions=validColumns(board)
     if(columnsOptions.length>0){
-    let random = Math.floor(Math.random() * columnsOptions.length)
-    return  columnsOptions[random]
+        let random = Math.floor(Math.random() * columnsOptions.length)
+        return  columnsOptions[random]
     }
-    // didn't find any good option and giving back negative answer -1. (will happen toward the end game when only lose possible)
+    // if didn't find any good option and giving back negative answer -1. (will happen toward the end game when only lose possible)
     return stuff.noPossibleWin
 }
 function bestOption(board){
@@ -87,17 +87,17 @@ function validColumns(board){
     for (let i = 0; i < stuff.boardSize; i++) {
         if(board[i][0]===stuff.empty){
             if(!willLose(i)){
-            freeColumns.push(i)}
+                freeColumns.push(i)}
         }
     }
-return freeColumns}
+    return freeColumns}
 function willLose(i){
     for (let j = 0; j <stuff.doNotEnter.length; j++) {
         if (i===stuff.doNotEnter[j]){
             return true
         }
     }
-return false
+    return false
 }
 function ruinYourself(i){
     for (let j = 0; j <stuff.ruinForYourself.length; j++) {
@@ -140,7 +140,7 @@ function strategyWithThree(board, color,move) {
     win = rightSlantWinThree(board, color,move)
     if (win !== stuff.noPossibleWin) {
         if(move===0){
-        return win;}
+            return win;}
     }
 
     win = leftSlantWinThree(board, color,move)
@@ -153,13 +153,13 @@ function strategyWithThree(board, color,move) {
     if (win !== stuff.noPossibleWin) {
         if(move===0){
             return win;}
-          }
+    }
 
     win = columnWinThree(board, color,move)
     if (win !== stuff.noPossibleWin) {
         if(move===0){
             return win;}
-          }
+    }
 
     if(move===0){
         return win;}
@@ -440,18 +440,18 @@ function leftSlantWinTwo(board, color) {
 
 function columnWinThree(board, color,move) {
     if(move===0){
-    for (let i = 0; i < stuff.boardSize; i++) {
-        let column = board[i];
-        for (let j = 0; j < stuff.columnSize - 3; j++) {
-            if (
-                stuff.empty === column[j] &&
-                color === column[j + 1] &&
-                color === column[j + 2] &&
-                color === column[j + 3]) {
-                return i;
+        for (let i = 0; i < stuff.boardSize; i++) {
+            let column = board[i];
+            for (let j = 0; j < stuff.columnSize - 3; j++) {
+                if (
+                    stuff.empty === column[j] &&
+                    color === column[j + 1] &&
+                    color === column[j + 2] &&
+                    color === column[j + 3]) {
+                    return i;
+                }
             }
-        }
-    }}
+        }}
     return stuff.noPossibleWin;
 }
 function rowWinThree(board, color,move) {
@@ -469,7 +469,7 @@ function rowWinThree(board, color,move) {
                 (j === stuff.columnSize || column3[j + 1+move] !== stuff.empty)
             ) {
                 if(move===0){
-                return i + 3;}
+                    return i + 3;}
                 else {stuff.doNotEnter.push(i+3)}
 
             } else if (color === column0[j] &&
@@ -500,7 +500,7 @@ function rowWinThree(board, color,move) {
                 else {stuff.doNotEnter.push(i)}            }
         }
     }
-        return stuff.noPossibleWin;
+    return stuff.noPossibleWin;
 }
 function rightSlantWinThree(board, color,move) {
     let startPoint = 3;
@@ -525,9 +525,9 @@ function rightSlantWinThree(board, color,move) {
                 color === column3[j - 3]
             ) {
                 if(move===0){
-                return i;}
+                    return i;}
                 else {
-                   stuff.doNotEnter.push(i)
+                    stuff.doNotEnter.push(i)
                 }
             }
             if (
@@ -568,7 +568,7 @@ function rightSlantWinThree(board, color,move) {
                 }            }
         }
     }
-        return stuff.noPossibleWin;
+    return stuff.noPossibleWin;
 }
 function leftSlantWinThree(board, color,move) {
     let endPoint = 3;
@@ -597,7 +597,7 @@ function leftSlantWinThree(board, color,move) {
             ) {
                 if (column0[underC0+move] !== stuff.empty) {
                     if(move===0){
-                    return i;}
+                        return i;}
                     else {
                         stuff.doNotEnter.push(i)
                     }
@@ -648,7 +648,7 @@ function leftSlantWinThree(board, color,move) {
             }
         }
     }
-        return stuff.noPossibleWin;
+    return stuff.noPossibleWin;
 }
 
 export default AlgorithmStrategy;
